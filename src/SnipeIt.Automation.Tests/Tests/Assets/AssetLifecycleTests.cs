@@ -24,6 +24,8 @@ public class AssetLifecycleTests : BaseTest
         TestContext.Out.WriteLine("1. Starting login step...");
         await loginPage.GotoAsync(Settings.BaseUrl);
         await loginPage.LoginAsync(Settings.Username, Settings.Password);
+        // Text screenshot of the login page after login
+        await Page.ScreenshotAsync(new() { Path = Path.Combine(TestContext.CurrentContext.WorkDirectory, "TestResults", "login.png"), FullPage = true });
         TestContext.Out.WriteLine("1. Login step completed.");
 
         // Step 2: Create a Macbook Pro 13" asset - Ready to Deploy - check it out to a random user.
