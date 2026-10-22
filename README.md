@@ -12,6 +12,19 @@ A single E2E test (`AssetLifecycleTests`) runs these steps:
 4. Open the asset from the list and validate its details (asset tag, serial, model, category, status, checked-out user)
 5. Validate the **History** tab (a `create new` entry and a `checkout` entry, with item, target and notes)
 
+## Testing approach to full fill the requirement
+1. Login with pre-config usernam / password
+2. After logged into the system sucessfully, a login success message appear on the dashboard page
+3. Click on asset page (/hardware) and click + "Create new" button to navigate to "hardware/create" page.
+4. Input company, serial number, select model "Laptops - Macbook Pro 13", Set Status to "Ready to Deploy", select a random user from the dropdown list, input Asset Name from "Optional Information" section. Then click on Save button. A new asset created successfully with a Asset Tag align with current timestamp.
+5. Use the new created asset tag and input to search box to confirm the asset is appear on asset list.
+6. Click on the asset from asset list to view the asset details
+7. Check the asset tag, asset name, status, user who deployed to, asset model are matched with what have input.
+8. Click on history tab from the asset detail page to see there are 2 entries, one row for status = create new, one row for checkout.
+
+Each assess step will generate a screenshort to folder '/src/SnipeIt.Automation.Tests/bin/Debug/net10.0/TestResults'
+
+
 ## Prerequisites
 
 | Tool | Version | Notes |
@@ -154,3 +167,5 @@ SnipeIt.Automation/
 - **UI text dependencies.** Assertions rely on labels such as `create new`, `checkout` and `Checked out on asset creation`. A different Snipe-IT version or language may require updates.
 - **Test duration.** The E2E test takes roughly 30 to 40 seconds because the demo site and Ajax dropdowns are slow.
 - **No parallelism.** There is a single test and all runs share the same demo data.
+
+- **Login user**: Currently this script skips asserting who creates the asset in history tab as initally I set it to "Admin User" but I found that it should be a dynamic check instead. I will work on that if I have more time in the future.
